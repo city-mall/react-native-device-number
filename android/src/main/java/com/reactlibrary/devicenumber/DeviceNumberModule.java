@@ -23,6 +23,7 @@ public class DeviceNumberModule extends ReactContextBaseJavaModule {
         @Override
         public void onActivityResult(Activity activity, int requestCode, int resultCode, Intent data) {
             if(requestCode == 1){
+              try {
                 if (resultCode == Activity.RESULT_OK){
                     WritableMap map = Arguments.createMap();
                     map.putString("mobileNumber", data.getExtras().getString("mobileNumber"));
@@ -30,6 +31,9 @@ public class DeviceNumberModule extends ReactContextBaseJavaModule {
                 }else{
                     gPromise.reject("Error", "Cancle");
                 }
+              } catch (Exception e) {
+
+              }
             }
         }
     };
